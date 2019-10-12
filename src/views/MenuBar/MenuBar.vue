@@ -30,7 +30,13 @@
               <span slot="title" style="font-size:15px">&nbsp;历史记录</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="4" @click="$router.push('userInfo')">
+          <el-menu-item index="4" @click="$router.push('chart')">
+              <i class="fa fa-area-chart iconn fa-fw" ></i>
+            <template slot="title" >
+              <span slot="title" style="font-size:15px">&nbsp;数据图表</span>
+            </template>
+          </el-menu-item>
+          <el-menu-item index="5" @click="$router.push('userInfo')">
               <i class="fa fa-user iconn fa-fw" ></i>
             <template slot="title" >
               <span slot="title" style="font-size:15px">&nbsp;个人管理</span>

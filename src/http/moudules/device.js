@@ -23,6 +23,56 @@ export const getMarker = (dev_id) => {
     })
 }
 
+export const getSimpleDeviceList = ()=>{
+    return axios({
+        url:'device/simpleDeviceList',
+        method:'get',
+    })
+}
+
+export const getChartData = (data)=>{
+    return axios({
+        url:'device/chart',
+        method:'post',
+        header:{
+            'Content-Type': 'application/json'
+        },
+        data
+    })
+}
+
+export const getDeviceInfo = (dev_id) =>{
+    return  axios({
+        url:'/device/dev_info/'+dev_id,
+        method: 'get'
+    })
+}
+
+export const getDeviceList = (data) =>{
+    return axios({
+        url:'/device/deviceList',
+        method: 'post',
+        header:{
+            'Content-Type': 'application/json'
+        },
+        data
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const getRunningStatus = () => {
     return axios({
         url: '/device/runningStatus/all',
@@ -40,20 +90,6 @@ export const getOnOffSt = (dev_id,days) => {
 
 
 
-export const getDeviceInfo = (dev_id) =>{
-    return  axios({
-        url:'/device/dev_info/'+dev_id,
-        method: 'get'
-    })
-}
-
-export const getDeviceList = (params) =>{
-    return axios({
-        url:'/device/dev_basic/list',
-        method: 'get',
-        params
-    })
-}
 
 export const getWeather = () =>{
     return axios({
