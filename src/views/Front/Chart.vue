@@ -95,10 +95,10 @@ import Cookies from "js-cookie";
                         value: 'waterPressure',
                         label: '水压'
                     },{
-                        value:'areaTemp',
+                        value:'area',
                         label:'小计面积'
                     },{
-                        value:'areaAll',
+                        value:'areaInAll',
                         label:'总计面积'
                     }],
                 devices: [],

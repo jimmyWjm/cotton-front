@@ -77,7 +77,7 @@
 <style lang="scss" scoped>
   .logPage {
     background-image: url('../assets/backGround.jpg');
-    overflow: hidden;
+    overflow: auto;
     position: absolute;
     top: 0px;
     left:0px;

@@ -4,7 +4,7 @@ import Login from '@/views/Login'
 import NotFound from '@/views/Error/404'
 import Home from '@/views/Home'
 import Front from '@/views/Front/Monitor'
-/* import DeviceReal from '@/views/Front/DeviceReal' */
+import DeviceReal from '@/views/Front/DeviceReal'
 import DeviceList from '@/views/Front/DeviceList'
 import Chart from '@/views/Front/Chart'
 
@@ -19,10 +19,11 @@ const router = new Router({
       component: Home,
       children: [
         { path: '', component: Front, name: '首页' },
-        { path: '/monitor',component: DeviceList, name: '设备监控'},
+        { path: '/monitor',component: DeviceList, name: '设备列表'},
         { path: '/history',component: DeviceList, name: '历史记录'},
         { path: '/userInfo',component: DeviceList, name: '个人管理'},
-        { path: '/chart',component: Chart, name:'数据图表'}
+        { path: '/chart',component: Chart, name:'数据图表'},
+        { path: '/deviceReal',component: DeviceReal, name:'设备监控'},
       ]
     },
     {

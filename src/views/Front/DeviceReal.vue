@@ -41,7 +41,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">采头状态</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.collectorState" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.collectorState" readonly="true" class="textInput" i>
                                 </div>
                         </el-row>
                 </el-col>
@@ -51,7 +51,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">风机转速</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.fanSpeed" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.fanSpeed" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -61,7 +61,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">行走速度</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.walkSpeed" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.walkSpeed" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -71,17 +71,47 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">水压</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.waterPressure" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.waterPressure" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
                                 <div>
-                                    <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">作业面积</div>
+                                    <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">小计面积</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.area" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.area" readonly="true" class="textInput" >
+                                </div>
+                        </el-row>
+                </el-col>
+                <el-col :span="3">
+                        <el-row class="paraModule">
+                                <div>
+                                    <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">总计面积</div>
+                                </div>
+                                <div>
+                                    <input type="text" name="input1" :value="markerDetail.areaInAll" readonly="true" class="textInput" >
+                                </div>
+                        </el-row>
+                </el-col>
+                <el-col :span="3">
+                        <el-row class="paraModule">
+                                <div>
+                                    <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">发动机转速</div>
+                                </div>
+                                <div>
+                                    <input type="text" name="input1" :value="markerDetail.motor" readonly="true" class="textInput" >
+                                </div>
+                        </el-row>
+                </el-col>
+                <el-col :span="3">
+                        <el-row class="paraModule">
+                                <div>
+                                    <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">重启标志</div>
+                                </div>
+                                <div>
+                                    <input type="text" name="input1" :value="markerDetail.restart" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -91,7 +121,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">棉管高位</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.cottonHigh" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.cottonHigh" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -101,7 +131,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">棉箱低位</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.cottonLow" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.cottonLow" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -111,7 +141,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">警告高位</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.warnHigh" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.warnHigh" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -121,7 +151,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">警告低位</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.warnLow" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.warnLow" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -131,7 +161,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">箱满</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.boxFull" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.boxFull" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -141,7 +171,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">仿形</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.profileModeling" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.profileModeling" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -151,7 +181,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">润滑</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.lubrication" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.lubrication" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -161,7 +191,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">锁定</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.lock" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.lock" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -171,7 +201,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">中位</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.middle" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.middle" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -181,7 +211,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">离合器报警模式</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.cluth_warn_mode" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.cluth_warn_mode" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -191,7 +221,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">离合器1</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.cluth1" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.cluth1" readonly="true" class="textInput">
                                 </div>
                         </el-row>
                 </el-col>
@@ -201,7 +231,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">离合器2</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.cluth2" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.cluth2" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -211,7 +241,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">离合器3</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.cluth3" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.cluth3" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -221,7 +251,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">吸入门1</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.suck1" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.suck1" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -231,7 +261,7 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">吸入门2</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.suck2" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.suck2" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
@@ -241,36 +271,10 @@
                                     <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">吸入门3</div>
                                 </div>
                                 <div>
-                                    <input type="text" name="input1" :value="markerDetail.suck3" readonly="true" class="textInput" id="areaDaily">
+                                    <input type="text" name="input1" :value="markerDetail.suck3" readonly="true" class="textInput" >
                                 </div>
                         </el-row>
                 </el-col>
-<!--                   <el-col :span="6">
-                    <div v-for="(value,index) in col1" :key="value.id" >
-                        <el-row style="margin:10px 0 0 0">
-                              <div>
-                                  <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">{{value}}</div>
-                              </div>
-                                <div>
-                                    <input type="text" name="input1" :value="paraValue[0+index]" readonly="true" class="textInput" id="areaDaily">
-                                </div>
-                        </el-row>
-                    </div>
-                  </el-col>
- -->
-<!--                    <el-col :span="6">
-                    <div v-for="(value,index) in col1" :key="value.id" >
-                        <el-row style="margin:10px 0 0 0">
-                              <div>
-                                  <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">{{value}}</div>
-                              </div>
-                                <div>
-                                    <input type="text" name="input1" :value="paraValue[0+index]" readonly="true" class="textInput" id="areaDaily">
-                                </div>
-                        </el-row>
-                    </div>
-                  </el-col> -->
-
 
                 </el-row>
             </div>
@@ -287,7 +291,7 @@
                                   <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">水压报警</div>
                               </div> 
                               <div>
-                                  <input type="text" name="input1" :value="markerDetail.waterPreWarn" readonly="true" class="textInput" id="areaDaily">
+                                  <input type="text" name="input1" :value="markerDetail.waterPreWarn" readonly="true" class="textInput" >
                               </div>   
                           </el-col>
                           <el-col :span="6">
@@ -295,7 +299,7 @@
                                   <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">风机报警</div>
                               </div> 
                               <div>
-                                  <input type="text" name="input1" :value="markerDetail.fanWarn" readonly="true" class="textInput" id="areaDaily">
+                                  <input type="text" name="input1" :value="markerDetail.fanWarn" readonly="true" class="textInput" >
                               </div>   
                           </el-col>
                           <el-col :span="6">
@@ -303,7 +307,7 @@
                                   <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">油温报警</div>
                               </div> 
                               <div>
-                                  <input type="text" name="input1" :value="markerDetail.oilTempWarn" readonly="true" class="textInput" id="areaDaily">
+                                  <input type="text" name="input1" :value="markerDetail.oilTempWarn" readonly="true" class="textInput" >
                               </div>   
                           </el-col>
                           <el-col :span="6">
@@ -311,7 +315,7 @@
                                   <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">水温报警</div>
                               </div> 
                               <div>
-                                  <input type="text" name="input1" :value="markerDetail.waterTempWarn" readonly="true" class="textInput" id="areaDaily">
+                                  <input type="text" name="input1" :value="markerDetail.waterTempWarn" readonly="true" class="textInput" >
                               </div>   
                           </el-col>
                   </el-row> 
@@ -331,7 +335,7 @@
                                   <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">故障码2</div>
                               </div> 
                               <div>
-                                  <input type="text" name="input1" :value="markerDetail.err2" readonly="true" class="textInput" id="areaDaily">
+                                  <input type="text" name="input1" :value="markerDetail.err2" readonly="true" class="textInput" >
                               </div>   
                           </el-col>
                           <el-col :span="6">
@@ -339,7 +343,7 @@
                                   <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">故障码3</div>
                               </div> 
                               <div>
-                                  <input type="text" name="input1" :value="markerDetail.err3" readonly="true" class="textInput" id="areaDaily">
+                                  <input type="text" name="input1" :value="markerDetail.err3" readonly="true" class="textInput" >
                               </div>   
                           </el-col>
                           <el-col :span="6">
@@ -347,7 +351,7 @@
                                   <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">故障码4</div>
                               </div> 
                               <div>
-                                  <input type="text" name="input1" :value="markerDetail.err4" readonly="true" class="textInput" id="areaDaily">
+                                  <input type="text" name="input1" :value="markerDetail.err4" readonly="true" class="textInput" >
                               </div>   
                           </el-col>
                           <el-col :span="6">
@@ -355,7 +359,7 @@
                                   <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">故障码5</div>
                               </div> 
                               <div>
-                                  <input type="text" name="input1" :value="markerDetail.err5" readonly="true" class="textInput" id="areaDaily">
+                                  <input type="text" name="input1" :value="markerDetail.err5" readonly="true" class="textInput" >
                               </div>   
                           </el-col>
                   </el-row> 
