@@ -118,7 +118,7 @@
                 <el-col :span="3">
                         <el-row class="paraModule">
                                 <div>
-                                    <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">棉管高位</div>
+                                    <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">棉箱高位</div>
                                 </div>
                                 <div>
                                     <input type="text" name="input1" :value="markerDetail.cottonHigh" readonly="true" class="textInput" >
@@ -128,7 +128,7 @@
                 <el-col :span="3">
                         <el-row class="paraModule">
                                 <div>
-                                    <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">棉箱低位</div>
+                                    <div class="text-left" style="font-size:16px;font-family:'中易宋体';font-weight: bold;">棉管低位</div>
                                 </div>
                                 <div>
                                     <input type="text" name="input1" :value="markerDetail.cottonLow" readonly="true" class="textInput" >

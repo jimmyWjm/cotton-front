@@ -356,18 +356,11 @@ export default {
           },
           //设备基本实时信息
           timerForRealData:'',
+          timerForMarker:'',
           realSimple:'',
           mac_id:'',
           dev_type:'',
-          //阶段框选 样式
-          cornBorder1:'5px solid #efefef',
-          cornBorder2:'5px solid  #efefef',
-          cornBorder3:'5px solid  #efefef',
-          cornBorder4:'5px solid  yellow',
-          wheatBorder1:'5px solid yellow',
-          wheatBorder2:'5px solid  #efefef',
-          wheatBorder3:'5px solid  #efefef',
-          wheatBorder4:'5px solid  #efefef',
+
 
         };
       },
@@ -445,7 +438,7 @@ export default {
                     var extData = [that.markersDetail[i].mac_id]
                     marker.extData = extData;
                   // marker.content='<h3><b>设备号:</b>'+that.markersDetail[i].mac_id+'</h3><button onclick="alert(\''+pp+'\')">详情</button>'
-                    marker.content='<h3><b>设备号:</b>'+that.markersDetail[i].mac_id+'</h3><button onclick="location=\'./#/monitor?mac_id='+pp+'\'">详情</button>'
+                    marker.content='<h3><b>设备号:</b>'+that.markersDetail[i].mac_id+'</h3><button onclick="location=\'./#/deviceReal?mac_id='+pp+'\'">详情</button>'
                     that.markers.push(marker)
                     AMap.event.addListener(marker, 'click', that.markerClick); 
                 }
@@ -677,6 +670,7 @@ export default {
         },
         hideRight(){
           clearInterval(this.timerForRealData)
+          this.timerForRealData = null;
           this.left = 24;
           this.right = 0;
         },
@@ -700,12 +694,20 @@ export default {
 
       //this.getState();
       //初始化页面
-      this.getMarkersDetail(); 
+      this.getMarkersDetail();        
+      this.timerForMarker = setInterval(this.updateMap,5000);  
 /*       //更新地图，点位置
-       setInterval(this.updateMap,1000)  
+
       //点聚合更新
       setInterval(this.updateCluster,60*1000)  */
 
   },
+  beforeDestroy(){
+      clearInterval(this.timerForMarker)
+      this.timerForMarker = null;
+  },
+  destroyed(){
+      console.log("destoryed");
+  }
 }
 </script>
