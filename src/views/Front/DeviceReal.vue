@@ -24,6 +24,9 @@
         <el-tab-pane label="实时监控" name="first">
           <el-col :span="9"> 
                <div id="container" :style="{height:mapHeight,width:'95%',overflow:'hidden',margin:'2px',border:'1px solid #000', margin:'0 0 0 10px'}" ></div>
+                <div class="button-group">
+                  <input type="button" class="xbutton" value="位置分享" :data-clipboard-text="pos_share" @click="copy" style="font-family:华文楷体 !important;font-size:20px" />
+                </div>  
           </el-col>
 
           <el-col :span="15" >
@@ -454,12 +457,34 @@
       font-size:18px !important;
       font-weight: bold !important;
      }
+      .button-group 
+     {
+      position: absolute;
+      bottom: 40px;
+      left: 70px;
+      padding: 10px;
+     }
+    .button-group .xbutton 
+     {
+      height: 28px;
+      line-height: 28px;
+      background-color: #0D9BF2;
+      color: #FFF;
+      border: 0;
+      outline: none;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      cursor: pointer;
+     }
 
 </style>
 
 <script>
   import api from "@/http";
-  import echarts from 'echarts'
+  //import echarts from 'echarts'
+
   import Vue from 'vue'
   export default {
       props:{
@@ -498,7 +523,7 @@
         window: '',
         map: null,
         runningStatus:'',
-
+        pos_share:'asda',
 
 
  
@@ -521,6 +546,20 @@
       } */
     },
     methods: {
+      copy() {
+            var clipboard = new ClipboardJS('.xbutton')
+            clipboard.on('success', e => {
+              alert("复制成功")
+              // 释放内存
+              clipboard.destroy()
+            })
+            clipboard.on('error', e => {
+              // 不支持复制
+              console.log('该浏览器不支持自动复制')
+              // 释放内存
+              clipboard.destroy()
+            })
+      },
       handleClick(tab, event) {
         console.log(tab, event);
       },
@@ -615,6 +654,7 @@
                                position:[that.markerDetail.lon,that.markerDetail.lat],
                                });
                   }
+                  that.pos_share = "https://uri.amap.com/marker?position="+that.markerDetail.lon+","+that.markerDetail.lat
                   //存储内容
                   marker.content='<h3><b style="color:grey">设备号:</b>'+that.markerDetail.mac_id+'</h3>'
                   AMap.event.addListener(marker, 'click', that.markerClick); 
@@ -645,6 +685,7 @@
                     }
                     var iconTheme = 'default';	 
                     var iconStyles = SimpleMarker.getBuiltInIconStyles(iconTheme);
+                    that.pos_share = "https://uri.amap.com/marker?position="+that.markerDetail.lon+","+that.markerDetail.lat
                       //这句语句
                       that.marker.setPosition([that.markerDetail.lnt,that.markerDetail.lat])
                       if(that.markerDetail.state == 1){
@@ -695,9 +736,9 @@
     mounted(){
         this.mapReq();
         this.markerReq(this.mac_id)
-/*    
-      this.timerforData = setInterval(this.getRealDataValue,1000,this.mac_id)  
- */
+   
+        this.timerforData = setInterval(this.getRealDataValue,1000,this.mac_id)  
+
     }
   };
 </script>

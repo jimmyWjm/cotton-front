@@ -178,6 +178,9 @@
         </el-col>
     </el-row>
     </el-row>
+    <el-row>
+      <button class="tag-read" :data-clipboard-text="pos_share" @click="copy">位置分享</button>
+    </el-row>
   </div>
 </template>
 <style scoped>
@@ -330,7 +333,7 @@ export default {
       data() {
         return {
 
-          zoom: 16,
+          zoom: 16, 
           center: [121.5273285, 31.21515044],
           markersDetail: [],
           markers: [],
@@ -360,11 +363,26 @@ export default {
           realSimple:'',
           mac_id:'',
           dev_type:'',
-
+          pos_share:'asda',
 
         };
       },
   methods: {
+      copy() {
+            var clipboard = new ClipboardJS('.tag-read')
+            clipboard.on('success', e => {
+              alert("复制成功")
+              // 释放内存
+              clipboard.destroy()
+            })
+            clipboard.on('error', e => {
+              // 不支持复制
+              console.log('该浏览器不支持自动复制')
+              // 释放内存
+              clipboard.destroy()
+            })
+      },
+
       getState(){
             this.$api.device.getRunningStatus().then((res) =>{
                 this.runningStatus = res.data
@@ -377,7 +395,7 @@ export default {
 
           that.map = new AMap.Map('container', {
             resizeEnable: true,
-          /*   center: [that.markersDetail[0].lnt,that.markersDetail[0].lat],//地图标记title */
+          /*   center: [that.markersDetail[0].lon,that.markersDetail[0].lat],//地图标记title */
             zoom: this.zoom //地图视图缩放级别
           })
 
@@ -500,7 +518,7 @@ export default {
                     if(that.infoWindow.getIsOpen()){
                         for(var i=0; i<that.markersDetail.length;i++){
                             //marker位置
-                            that.markers[i].setPosition([that.markersDetail[i].lnt, that.markersDetail[i].lat])
+                            that.markers[i].setPosition([that.markersDetail[i].lon, that.markersDetail[i].lat])
                             //样式变化
                             if(that.markersDetail[i].state == 1){
                               that.markers[i].setIconStyle(iconStyles[2])
@@ -512,7 +530,7 @@ export default {
                             }
                             //窗体位置
                             if(that.infoWindow.getContent() == that.markers[i].content) {
-                              that.infoWindow.setPosition([that.markersDetail[i].lnt, that.markersDetail[i].lat])
+                              that.infoWindow.setPosition([that.markersDetail[i].lon, that.markersDetail[i].lat])
                             }
                             that.markers[i].show();
                         }
@@ -520,7 +538,7 @@ export default {
                     else{
                         for(var i=0; i<that.markersDetail.length;i++){
                             //marker位置
-                            that.markers[i].setPosition([that.markersDetail[i].lnt, that.markersDetail[i].lat])
+                            that.markers[i].setPosition([that.markersDetail[i].lon, that.markersDetail[i].lat])
                             //样式变化
                             if(that.markersDetail[i].state == 1){
                               that.markers[i].setIconStyle(iconStyles[2])
@@ -539,14 +557,14 @@ export default {
                     if(that.infoWindow.getIsOpen()){
                         for(var i=0; i<that.markersDetail.length;i++){
                             //marker位置
-                            that.markers[i].setPosition([that.markersDetail[i].lnt, that.markersDetail[i].lat])
+                            that.markers[i].setPosition([that.markersDetail[i].lon, that.markersDetail[i].lat])
                             //样式变化
                             if(that.markersDetail[i].state == 1){
                               that.markers[i].setIconStyle(iconStyles[2])
                               //在线设备要全部显示
                               //窗体位置
                               if(that.infoWindow.getContent() == that.markers[i].content) {
-                                that.infoWindow.setPosition([that.markersDetail[i].lnt, that.markersDetail[i].lat])
+                                that.infoWindow.setPosition([that.markersDetail[i].lon, that.markersDetail[i].lat])
                               }
                               that.markers[i].show();
                               that.markersOnline.push(that.markers[i])
@@ -567,7 +585,7 @@ export default {
                     }else{
                         for(var i=0; i<that.markersDetail.length;i++){
                             //marker位置
-                            that.markers[i].setPosition([that.markersDetail[i].lnt, that.markersDetail[i].lat])
+                            that.markers[i].setPosition([that.markersDetail[i].lon, that.markersDetail[i].lat])
                             //样式变化
                             if(that.markersDetail[i].state == 1){
                               that.markers[i].setIconStyle(iconStyles[2])
@@ -695,7 +713,7 @@ export default {
       //this.getState();
       //初始化页面
       this.getMarkersDetail();        
-      this.timerForMarker = setInterval(this.updateMap,5000);  
+      /* this.timerForMarker = setInterval(this.updateMap,5000);   */
 /*       //更新地图，点位置
 
       //点聚合更新

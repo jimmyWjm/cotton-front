@@ -22,6 +22,7 @@ module.exports = {
     'element-ui': 'ElementUI',
     'vue-i18n':'VueI18n',
     'echarts': 'echarts',
+    'clipboard':'clipboard'
   },
   output: {
     path: config.build.assetsRoot,

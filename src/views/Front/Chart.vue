@@ -54,7 +54,7 @@
 
 <script>
 import { format } from "@/utils/datetime"
-import echarts from 'echarts'
+//import echarts from 'echarts'
 import Cookies from "js-cookie";
  export default {
         props:{
