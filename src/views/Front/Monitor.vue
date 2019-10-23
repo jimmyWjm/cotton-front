@@ -178,9 +178,6 @@
         </el-col>
     </el-row>
     </el-row>
-    <el-row>
-      <button class="tag-read" :data-clipboard-text="pos_share" @click="copy">位置分享</button>
-    </el-row>
   </div>
 </template>
 <style scoped>
@@ -368,21 +365,6 @@ export default {
         };
       },
   methods: {
-      copy() {
-            var clipboard = new ClipboardJS('.tag-read')
-            clipboard.on('success', e => {
-              alert("复制成功")
-              // 释放内存
-              clipboard.destroy()
-            })
-            clipboard.on('error', e => {
-              // 不支持复制
-              console.log('该浏览器不支持自动复制')
-              // 释放内存
-              clipboard.destroy()
-            })
-      },
-
       getState(){
             this.$api.device.getRunningStatus().then((res) =>{
                 this.runningStatus = res.data
@@ -421,7 +403,6 @@ export default {
               var iconTheme = 'default';	 
               var iconStyles = SimpleMarker.getBuiltInIconStyles(iconTheme);
               for(let i=0;i<that.markersDetail.length;i++){
-                if(that.markersDetail[i].lon!=null){
                     var marker = null;
                     if(that.markersDetail[i].state == 1){
                       marker = new SimpleMarker({
@@ -459,7 +440,6 @@ export default {
                     marker.content='<h3><b>设备号:</b>'+that.markersDetail[i].mac_id+'</h3><button onclick="location=\'./#/deviceReal?mac_id='+pp+'\'">详情</button>'
                     that.markers.push(marker)
                     AMap.event.addListener(marker, 'click', that.markerClick); 
-                }
               }
 
               that.map.setFitView();
@@ -713,10 +693,10 @@ export default {
       //this.getState();
       //初始化页面
       this.getMarkersDetail();        
-      /* this.timerForMarker = setInterval(this.updateMap,5000);   */
-/*       //更新地图，点位置
+      //更新地图，点位置
+      this.timerForMarker = setInterval(this.updateMap,5000);  
 
-      //点聚合更新
+/*       //点聚合更新
       setInterval(this.updateCluster,60*1000)  */
 
   },
