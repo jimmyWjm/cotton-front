@@ -625,64 +625,69 @@
               var iconTheme = 'default';	 
               var iconStyles = SimpleMarker.getBuiltInIconStyles(iconTheme);
                   var marker = null;
-
-                  if(that.markerDetail.state == 1){
-                    marker = new SimpleMarker({
-                               iconTheme: iconTheme,
-                               //使用内置的iconStyle
-                               iconStyle: iconStyles[2],	   
-                               map: that.map,
-                               offset: new AMap.Pixel(-10, -20),
-                               position:[that.markerDetail.lon,that.markerDetail.lat],
-                               });
-                  }else if(that.markerDetail.state == 0){
-                    marker = new SimpleMarker({
-                               iconTheme: iconTheme,
-                               //使用内置的iconStyle
-                               iconStyle: iconStyles[10],	   
-                               map: that.map,
-                               offset: new AMap.Pixel(-10, -20),
-                               position:[that.markerDetail.lon,that.markerDetail.lat],
-                               });
-                  }else{
-                    marker = new SimpleMarker({
-                               iconTheme: iconTheme,
-                               //使用内置的iconStyle
-                               iconStyle: iconStyles[17],	   
-                               map: that.map,
-                               offset: new AMap.Pixel(-10, -20),
-                               position:[that.markerDetail.lon,that.markerDetail.lat],
-                               });
+                  if(that.markerDetail.lon!=null&&that.markerDetail.lat!=null){
+                      if(that.markerDetail.state == 1){
+                        marker = new SimpleMarker({
+                                  iconTheme: iconTheme,
+                                  //使用内置的iconStyle
+                                  iconStyle: iconStyles[2],	   
+                                  map: that.map,
+                                  offset: new AMap.Pixel(-10, -20),
+                                  position:[that.markerDetail.lon,that.markerDetail.lat],
+                                  });
+                      }else if(that.markerDetail.state == 0){
+                        marker = new SimpleMarker({
+                                  iconTheme: iconTheme,
+                                  //使用内置的iconStyle
+                                  iconStyle: iconStyles[10],	   
+                                  map: that.map,
+                                  offset: new AMap.Pixel(-10, -20),
+                                  position:[that.markerDetail.lon,that.markerDetail.lat],
+                                  });
+                      }else{
+                        marker = new SimpleMarker({
+                                  iconTheme: iconTheme,
+                                  //使用内置的iconStyle
+                                  iconStyle: iconStyles[17],	   
+                                  map: that.map,
+                                  offset: new AMap.Pixel(-10, -20),
+                                  position:[that.markerDetail.lon,that.markerDetail.lat],
+                                  });
+                      }
+                      that.pos_share = "https://uri.amap.com/marker?position="+that.markerDetail.lon+","+that.markerDetail.lat
+                      //存储内容
+                      marker.content='<h3><b style="color:grey">设备号:</b>'+that.markerDetail.mac_id+'</h3>'
+                      AMap.event.addListener(marker, 'click', that.markerClick); 
+                      that.marker = marker
+                      var infoWindow=new AMap.InfoWindow({offset: new AMap.Pixel(0, -30),closeWhenClickMap: true});
+                      infoWindow.setContent(marker.content);
+                      that.infoWindow = infoWindow
                   }
-                  that.pos_share = "https://uri.amap.com/marker?position="+that.markerDetail.lon+","+that.markerDetail.lat
-                  //存储内容
-                  marker.content='<h3><b style="color:grey">设备号:</b>'+that.markerDetail.mac_id+'</h3>'
-                  AMap.event.addListener(marker, 'click', that.markerClick); 
-                  that.marker = marker
-                  var infoWindow=new AMap.InfoWindow({offset: new AMap.Pixel(0, -30),closeWhenClickMap: true});
-                  infoWindow.setContent(marker.content);
-                  that.infoWindow = infoWindow
                   that.map.setFitView();
                   that.map.setZoom(that.zoom)
           })
             })          
       },
-      markerUpdate(mac_id){
+      markerUpdate(){
         let that = this
-            this.$api.device.getMarker(mac_id).then((res)=>{
-              let data = res.data
-              that.markerDetail = data
-              AMapUI.loadUI(['overlay/SimpleMarker'], function(SimpleMarker) {
-                    if(data.state==1){
-                      that.state = '在线'
-                      that.stateColor = 'green'
-                    }else if(data.state == 0){
-                      that.state = '离线'
-                      that.stateColor = 'grey'
-                    }else{
-                      that.state = '故障'
-                      that.stateColor = 'red'
-                    }
+        if(that.marker==null){
+          that.markerReq(that.mac_id)
+        }else{
+          this.$api.device.getMarker(mac_id).then((res)=>{
+            let data = res.data
+            that.markerDetail = data
+            AMapUI.loadUI(['overlay/SimpleMarker'], function(SimpleMarker) {
+                  if(data.state==1){
+                    that.state = '在线'
+                    that.stateColor = 'green'
+                  }else if(data.state == 0){
+                    that.state = '离线'
+                    that.stateColor = 'grey'
+                  }else{
+                    that.state = '故障'
+                    that.stateColor = 'red'
+                  }
+                  if(that.markerDetail.lon!=null&&that.markerDetail.lat!=null){
                     var iconTheme = 'default';	 
                     var iconStyles = SimpleMarker.getBuiltInIconStyles(iconTheme);
                     that.pos_share = "https://uri.amap.com/marker?position="+that.markerDetail.lon+","+that.markerDetail.lat
@@ -698,8 +703,11 @@
                       if(that.infoWindow.getIsOpen()){
                         that.infoWindow.setPosition([that.markerDetail.lnt,that.markerDetail.lat])
                       }
-              })
+                  }
+
             })
+          })
+        }
       },
 
         markerClick(e) {
@@ -735,10 +743,19 @@
     },
     mounted(){
         this.mapReq();
-        this.markerReq(this.mac_id)
+        
+        this.markerUpdate()
+        this.timerForPos = setInterval(this.markerUpdate,5000)
    
         this.timerforData = setInterval(this.getRealDataValue,1000,this.mac_id)  
 
+    },
+    beforeDestroy(){
+        clearInterval(this.timerforData)
+        this.timerforData = null;
+    },
+    destroyed(){
+        console.log("destoryed");
     }
   };
 </script>
