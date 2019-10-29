@@ -680,8 +680,8 @@ export default {
           this.$api.device.getRealDataValue(mac_id).then((res)=>{
             let data = res.data;
             this.realSimple = data;
-            console.log("realSimple")
-            console.log(data)
+/*             console.log("realSimple")
+            console.log(data) */
           })
         }
 

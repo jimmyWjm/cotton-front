@@ -385,6 +385,30 @@
                 <!-- 分页 -->
 
         </el-tab-pane>
+        <el-tab-pane label="历史轨迹" name="fifth" >
+                <el-row style="margin-top:10px">
+                    <el-col :span="5">
+                      <el-date-picker
+                        v-model="timeRange"
+                        type="datetimerange"
+                        size = "mini"
+                        :picker-options="pickerOptions"
+                        range-separator="至"
+                        start-placeholder="开始日期"
+                        end-placeholder="结束日期"
+                        align="right"
+                        value-format="yyyy-MM-dd HH:mm:ss">
+                      </el-date-picker>
+                    </el-col>
+                    <el-col :span="3">
+                      <el-button  type="primary" size="mini" @click="getHistory">查询</el-button>
+                    </el-col>
+                </el-row>
+                <div style="height:600px;margin-top:10px">
+                  <div id="containerForHistory" :style="{height:'595px',width:'100%',overflow:'hidden',margin:'2px',border:'1px solid #000', margin:'0 0 0 10px'}" ></div>
+                </div>
+                <!-- 分页 -->
+        </el-tab-pane>
       </el-tabs>
       </el-row>
 
@@ -538,6 +562,38 @@
         timerforPos:'',
         timerforData:'',
 
+        //历史轨迹
+        timeRange:[],
+        pickerOptions: {
+          shortcuts: [{
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近三个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
+        mapForHistory:null,
+        lineArr:[],
+        polyline:''
       };
     },
     coumputed:{
@@ -561,7 +617,11 @@
             })
       },
       handleClick(tab, event) {
-        console.log(tab, event);
+        console.log(tab.name)
+        if(tab.name == 'fifth'){
+          //加载历史轨迹的地图
+          this.initHistoryMap();
+        }
       },
     // 获取高德地图api
       mapReq () {
@@ -656,7 +716,7 @@
                       }
                       that.pos_share = "https://uri.amap.com/marker?position="+that.markerDetail.lon+","+that.markerDetail.lat
                       //存储内容
-                      marker.content='<h3><b style="color:grey">设备号:</b>'+that.markerDetail.mac_id+'</h3>'
+                      marker.content='<h3><b style="color:grey">设备号:</b>'+that.markerDetail.mac_id+'</h3>'+'<h4><b style="color:grey">上一个位置时间:</b>'+that.markerDetail.gpsTime+'</h4>'
                       AMap.event.addListener(marker, 'click', that.markerClick); 
                       that.marker = marker
                       var infoWindow=new AMap.InfoWindow({offset: new AMap.Pixel(0, -30),closeWhenClickMap: true});
@@ -673,7 +733,7 @@
         if(that.marker==null){
           that.markerReq(that.mac_id)
         }else{
-          this.$api.device.getMarker(mac_id).then((res)=>{
+          this.$api.device.getMarker(that.mac_id).then((res)=>{
             let data = res.data
             that.markerDetail = data
             AMapUI.loadUI(['overlay/SimpleMarker'], function(SimpleMarker) {
@@ -692,7 +752,7 @@
                     var iconStyles = SimpleMarker.getBuiltInIconStyles(iconTheme);
                     that.pos_share = "https://uri.amap.com/marker?position="+that.markerDetail.lon+","+that.markerDetail.lat
                       //这句语句
-                      that.marker.setPosition([that.markerDetail.lnt,that.markerDetail.lat])
+                      that.marker.setPosition([that.markerDetail.lon,that.markerDetail.lat])
                       if(that.markerDetail.state == 1){
                               that.marker.setIconStyle(iconStyles[2])
                       }else if(that.markerDetail.state == 0){
@@ -701,7 +761,7 @@
                               that.marker.setIconStyle(iconStyles[17])
                       }
                       if(that.infoWindow.getIsOpen()){
-                        that.infoWindow.setPosition([that.markerDetail.lnt,that.markerDetail.lat])
+                        that.infoWindow.setPosition([that.markerDetail.lon,that.markerDetail.lat])
                       }
                   }
 
@@ -724,7 +784,36 @@
           })
       },
 
-     
+      initHistoryMap(){
+        let that = this
+
+        that.mapForHistory = new AMap.Map('containerForHistory', {
+          resizeEnable: true,
+          zoom: 4 //地图视图缩放级别
+        })
+      },
+      getHistory(){
+          let Info = {
+              mac_id:this.mac_id,
+              timeStart:this.timeRange[0],
+              timeEnd:this.timeRange[1]
+          }
+          this.$api.device.getMarkerHistory(Info).then((res)=>{
+            this.lineArr = res.data
+            this.mapForHistory.remove(this.polyline)
+            this.polyline = null
+            this.polyline = new AMap.Polyline({
+                map: this.mapForHistory,
+                path: this.lineArr,
+                showDir:true,
+                strokeColor: "blue",  //线颜色
+                // strokeOpacity: 1,     //线透明度
+                strokeWeight: 4,      //线宽
+                strokeStyle: "solid"  //线样式
+            });
+            this.mapForHistory.setFitView();
+          })
+      },
 
     },
     created(){
@@ -753,6 +842,9 @@
     beforeDestroy(){
         clearInterval(this.timerforData)
         this.timerforData = null;
+        clearInterval(this.timerForPos)
+        this.timerForPos = null
+        console.log("asdsadsa")
     },
     destroyed(){
         console.log("destoryed");

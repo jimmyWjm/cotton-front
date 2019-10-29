@@ -113,3 +113,14 @@ export const getMaintainList = (params) =>{
         params
     })
 }
+
+export const getMarkerHistory = (data) =>{
+    return axios({
+        url:'/device/history',
+        method: 'post',
+        header:{
+            'Content-Type': 'application/json'
+        },
+        data
+    })
+}
