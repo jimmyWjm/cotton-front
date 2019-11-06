@@ -61,18 +61,6 @@ export const getDeviceList = (data) =>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 export const getRunningStatus = () => {
     return axios({
         url: '/device/runningStatus/all',
@@ -116,8 +104,19 @@ export const getMaintainList = (params) =>{
 
 export const getMarkerHistory = (data) =>{
     return axios({
-        url:'/device/history',
+        url:'/device/history/route',
         method: 'post',
+        header:{
+            'Content-Type': 'application/json'
+        },
+        data
+    })
+}
+
+export const getDeviceHistory = (data) =>{
+    return axios({
+        url:'/device/history/data',
+        method:'post',
         header:{
             'Content-Type': 'application/json'
         },
