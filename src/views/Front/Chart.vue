@@ -100,6 +100,9 @@ import Cookies from "js-cookie";
                     },{
                         value:'areaInAll',
                         label:'总计面积'
+                    },{
+                        value:'restart',
+                        label:'Restart'
                     }],
                 devices: [],
                 option:'',
