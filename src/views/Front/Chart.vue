@@ -187,12 +187,12 @@ this.option = {
         {
             name: this.chartData.para1Name+"("+this.chartData.para1Unit+")",
             type: 'value',
-            max: this.chartData.para1Max
+           // max: this.chartData.para1Max
         },
         {
             name: this.chartData.para2Name+"("+this.chartData.para2Unit+")",
             nameLocation: 'end',
-            max:  this.chartData.para2Max,
+           // max:  this.chartData.para2Max,
             type: 'value',
             inverse: false
         }

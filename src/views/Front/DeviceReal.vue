@@ -10,6 +10,15 @@
                 <h3 :style="{'border-radius':'5px','background-color':stateColor,color:'white',width:'45px','line-height':'35px'}">{{state}}</h3>
             </div>
             </el-col>
+            <el-col :offset="12" :span="8">
+              <el-row>
+
+                <div style="line-height:35px;font-weight:bold">上位机版本号：{{markerDetail.hostVer}}</div>
+              </el-row>
+              <el-row>
+                <div style="line-height:35px;font-weight:bold">下位机版本号：{{markerDetail.lowerVer}}</div>
+              </el-row>
+            </el-col>
         </el-row>
         <el-row style="text-align:left">
             <div style="margin-left:25px;font-weight:bolder">
