@@ -130,51 +130,7 @@
         </div> 
         </el-col>
         <el-col :span="right" style="background-color:white;height:635px;border:1px solid black;"> 
-            <div style="margin-top:30px;">
-                <div style="text-align:left;font-size:18px;font-weight:bold;">
-                  <el-row>
-                  <el-col :span="4" :offset="1">设备号:</el-col> 
-                  <el-col :span="7" style="margin-top:5px;color:blue;float:left">{{mac_id}}</el-col> 
-                  </el-row>
-                </div>
-                <table class="table table-striped"  style="margin-top:30px;width:100%;border:0px solid black;border-collapse:collapse" >
-                    <tbody>	
-                      <tr>
-                      <td height="50px" width="40%" class="tdleft">时间</td>
-                      <td id="lon"  class="tdStyle" >{{realSimple.time}}</td>
-                    </tr>
-                    <tr>
-                      <td height="50px" class="tdleft">行走速度</td>
-                      <td id="x_speed"  width="208px" class="tdStyle" >{{realSimple.walkSpeed}}</td>
-                    </tr>
-                    <tr>
-                      <td height="50px"  class="tdleft">作业面积</td>
-                      <td id="y_speed"  width="208px"  class="tdStyle">{{realSimple.area}}</td>
-                    </tr>
-                
-                    <tr>
-                    <td height="50px" class="tdleft">风机转速</td>
-                      <td id="yaw"  width="208px"  class="tdStyle" >{{realSimple.fanSpeed}}</td>
-                    </tr>
-                    <tr>
-                      <td height="50px"  class="tdleft">水压告警</td>
-                      <td id="x_pos"    width="208px"  class="tdStyle" >{{realSimple.waterPreWarn}}</td>
-                    </tr>
-                    <tr>
-                      <td height="50px"  class="tdleft">风机告警</td>
-                      <td id="y_pos"   width="208px" class="tdStyle" >{{realSimple.fanWarn}}</td>
-                    </tr>
-                    <tr>
-                      <td height="50px"  class="tdleft">水温告警</td>
-                      <td id="y_pos"   width="208px" class="tdStyle" >{{realSimple.waterTempWarn}}</td>
-                    </tr>
-                    <tr>
-                      <td height="50px"  class="tdleft">油温告警</td>
-                      <td id="y_pos"   width="208px" class="tdStyle" >{{realSimple.oilTempWarn}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <datatable :mac_id="mac_id" :realSimple="realSimple"></datatable>
         </el-col>
     </el-row>
     </el-row>
@@ -226,7 +182,7 @@
      {
       position: absolute;
       bottom: 20px;
-      left: -1300px;
+      left: 50px;
       padding: 10px;
      }
     .button-group .button 
@@ -289,61 +245,40 @@
        font-weight: bold;
        color:blue
      }
-     .columnStyle
-     {
-         width:95%;
-         font-size:17px;
-         background-color:#409EFF
-         ;text-align:center;
-         box-sizing: border-box;
-         color:white;
-         height:43px;
-         line-height:43px;
-         margin:0;
-         display: inline-block;
-     }
-     .tdStyle
-     {
-       vertical-align:middle;
-       color:white;
-       background-color:#1981c0;
-       border-top:black solid 1px;
-       border-bottom:black solid 1px;
-       font-size: 18px
-     }
-     .tdleft
-     {
-       border-right:black solid 3px;
-       border-bottom:black solid 1px;
-       border-top:black solid 1px;
-       background-color:white;
-       font-weight: bold
-     }
 </style>
 
 <script>
 import AMap from 'AMap';
 import AMapUI from 'AMapUI';
+import datatable from '@/components/Monitor/dataTable'
 export default {
       name: 'amap-page',
 
       data() {
         return {
-
+          //map基础参数
           zoom: 16, 
           center: [121.5273285, 31.21515044],
+          map: null,
+          //详细数据
           markersDetail: [],
           markers: [],
           infoWindow: null,
           window: '',
-          map: null,
           online:'隐藏离线设备',
           isCluster:'点聚合',
           cluster:null,
+          //在线设备
           markersOnline:[],
+          //设备基本实时信息
+          realSimple:'',
+          mac_id:'',
+          dev_type:'',
           runningStatus:'',
+          //动态页面变化
           left:24,
           right:0,
+          //天气信息
           weatherInfo:'',
           data:{
             city:'',
@@ -354,16 +289,14 @@ export default {
             humidity:'',
             reportTime:''
           },
-          //设备基本实时信息
+          //定时器
           timerForRealData:'',
           timerForMarker:'',
-          realSimple:'',
-          mac_id:'',
-          dev_type:'',
-          pos_share:'asda',
-
         };
       },
+    components:{
+      datatable,
+    },
   methods: {
       getState(){
             this.$api.device.getRunningStatus().then((res) =>{
@@ -459,7 +392,7 @@ export default {
         getMarkersDetail(){
             this.$api.device.getMarkers().then((res) =>{
                 this.markersDetail = res.data
-                console.log(this.markersDetail)
+                /* console.log(this.markersDetail) */
                 //调用初始化marker方法
                 this.mapReq()
             })
@@ -591,7 +524,8 @@ export default {
           this.timerForRealData = null;
           this.mac_id = e.target.extData[0];
           /* this.dev_type = e.target.extData[1]; */
-          this.timerForRealData = setInterval(this.getRealSimple,1200,this.mac_id)
+          this.getRealSimple(this.mac_id)
+          this.timerForRealData = setInterval(this.getRealSimple,5000,this.mac_id)
           this.showRight();
           this.infoWindow.setContent(e.target.content);
           this.infoWindow.open(this.map, e.target.getPosition());
@@ -696,8 +630,8 @@ export default {
       //更新地图，点位置
       this.timerForMarker = setInterval(this.updateMap,5000);  
 
-/*       //点聚合更新
-      setInterval(this.updateCluster,60*1000)  */
+      //点聚合更新
+      setInterval(this.updateCluster,60*1000) 
 
   },
   beforeDestroy(){
