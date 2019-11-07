@@ -120,7 +120,7 @@
 
     <el-row>
         <el-col :span="left">
-        <div id="container" style="height:630px;margin:5px"></div>
+        <div id="container" style="height:800px;margin:5px"></div>
         <div class="button-group">
           <input type="button" class="button" :value="online" v-on:click="hide" style="font-family:华文楷体 !important;font-size:20px" />
           <input type="button" class="button" :value="isCluster"  v-on:click="addCluster" style="font-family:华文楷体 !important;font-size:20px" />

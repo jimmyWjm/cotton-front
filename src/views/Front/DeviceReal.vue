@@ -839,7 +839,7 @@
         //设备历史数据
         timeRangeForDeviceHistory:[],
 				currentPage: 1,
-        pageSize: 400,
+        pageSize: 100,
         total:8,
         tableData:[]
       };
@@ -897,7 +897,7 @@
               let data = res.data
               
               this.markerDetail = data
-              console.log("markerDetail"+this.markerDetail)
+              /* console.log("markerDetail"+this.markerDetail) */
               if(data.state==1){
                 this.state = '在线'
                 this.stateColor = 'green'
@@ -917,8 +917,8 @@
               let data = res.data
 
               this.markerDetail = data
-              console.log("markerDetail"+this.markerDetail.time)
-              console.log(this.markerDetail)
+/*               console.log("markerDetail"+this.markerDetail.time)
+              console.log(this.markerDetail) */
               if(data.state==1){
                 this.state = '在线'
                 this.stateColor = 'green'
@@ -1072,7 +1072,7 @@
               offset:(this.currentPage-1)*this.pageSize}
 
           this.$api.device.getDeviceHistory(Info).then((res) => {
-                      console.log(res);
+                   /*    console.log(res); */
                       this.total = res.data.total
                       this.tableData = res.data.data
           }).catch(function(res) {
@@ -1120,7 +1120,6 @@
         this.timerforData = null;
         clearInterval(this.timerForPos)
         this.timerForPos = null
-        console.log("asdsadsa")
     },
     destroyed(){
         console.log("destoryed");
