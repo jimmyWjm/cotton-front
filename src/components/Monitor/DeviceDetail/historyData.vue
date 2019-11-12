@@ -6,6 +6,7 @@
                             <el-date-picker
                             v-model="timeRangeForDeviceHistory"
                             type="datetimerange"
+                            :default-value="defaulttime"
                             range-separator="至"
                             start-placeholder="开始日期"
                             end-placeholder="结束日期"
@@ -243,7 +244,8 @@ export default {
 		currentPage: 1,
         pageSize: 100,
         total:8,
-        tableData:[]
+        tableData:[],
+        defaulttime:[],
         }
     },
     methods:{
@@ -277,6 +279,14 @@ export default {
       },
     },
     mounted(){
+        //设置初始时间为前一天
+        var curDate = new Date()
+        var preDate = new Date(new Date() - 24*60*60*1000)
+ 
+        this.timeRangeForDeviceHistory[0] = preDate.getFullYear()+"-"+(preDate.getUTCMonth()+1)+"-"+preDate.getDate()+" "+
+        preDate.getHours()+":"+preDate.getMinutes()+":"+preDate.getSeconds()
+        this.timeRangeForDeviceHistory[1] = curDate.getFullYear()+"-"+(curDate.getMonth()+1)+"-"+curDate.getDate()+" "+
+        curDate.getHours()+":"+curDate.getMinutes()+":"+curDate.getSeconds()
         this.handleSearch();
     }
 }
