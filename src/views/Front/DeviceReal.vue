@@ -20,14 +20,9 @@
                   运行参数
                   </div>
                 </el-row>
-                <el-row>
-                        
-                <el-col :span="3">
-                        <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.collectorState" title="采头状态"></datacolumn> 
-                        </el-row>
-                </el-col>
-                <el-col :span="3">
+
+              <el-row>
+                <el-col :span="3" :offset="1">
                         <el-row class="paraModule">
                                 <datacolumn :value="markerDetail.fanSpeed" title="风机转速"></datacolumn> 
                         </el-row>
@@ -60,6 +55,13 @@
                 <el-col :span="3">
                         <el-row class="paraModule">
                                 <datacolumn :value="markerDetail.restart" title="重启标志"></datacolumn> 
+                        </el-row>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="3" :offset="1">
+                        <el-row class="paraModule">
+                                <datashow :value="markerDetail.collectorState" title="采头状态"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
@@ -95,7 +97,9 @@
                                 <datashow :value="markerDetail.lock" title="锁定"></datashow> 
                         </el-row>
                 </el-col>
-                <el-col :span="3">
+              </el-row>
+              <el-row>
+                <el-col :span="3" :offset="1"> 
                         <el-row class="paraModule">
                                 <datashow :value="markerDetail.middle" title="中位"></datashow> 
                         </el-row>
