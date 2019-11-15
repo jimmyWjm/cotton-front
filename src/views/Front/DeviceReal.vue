@@ -64,130 +64,111 @@
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.cottonHigh" title="棉箱高位"></datacolumn> 
+                        
+                                <datashow :value="markerDetail.cottonHigh" title="棉箱高位"></datashow> 
+                                <!-- <datacolumn :value="markerDetail.cottonHigh" title="棉管低位"></datacolumn> -->
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.cottonLow" title="棉管低位"></datacolumn> 
+                                <datashow :value="markerDetail.cottonLow" title="棉管低位"></datashow> 
+                        </el-row>
+                </el-col>
+                
+                <el-col :span="3">
+                        <el-row class="paraModule">
+                                <datashow :value="markerDetail.boxFull" title="箱满"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.warnHigh" title="警告高位"></datacolumn> 
+                                <datashow :value="markerDetail.profileModeling" title="仿形"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.warnLow" title="警告低位"></datacolumn> 
+                                <datashow :value="markerDetail.lubrication" title="润滑"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.boxFull" title="箱满"></datacolumn> 
+                                <datashow :value="markerDetail.lock" title="锁定"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.profileModeling" title="仿形"></datacolumn> 
+                                <datashow :value="markerDetail.middle" title="中位"></datashow> 
+                        </el-row>
+                </el-col>
+                
+                <el-col :span="3">
+                        <el-row class="paraModule">
+                                <datashow :value="markerDetail.cluth1" title="离合器1"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.lubrication" title="润滑"></datacolumn> 
+                                <datashow :value="markerDetail.cluth2" title="离合器2"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.lock" title="锁定"></datacolumn> 
+                                <datashow :value="markerDetail.cluth3" title="离合器3"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.middle" title="中位"></datacolumn> 
+                                <datashow :value="markerDetail.suck1" title="吸入门1"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.cluth_warn_mode" title="离合器报警模式"></datacolumn> 
+                                <datashow :value="markerDetail.suck2" title="吸入门2"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
                         <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.cluth1" title="离合器1"></datacolumn> 
-                        </el-row>
-                </el-col>
-                <el-col :span="3">
-                        <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.cluth2" title="离合器2"></datacolumn> 
-                        </el-row>
-                </el-col>
-                <el-col :span="3">
-                        <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.cluth3" title="离合器3"></datacolumn> 
-                        </el-row>
-                </el-col>
-                <el-col :span="3">
-                        <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.suck1" title="吸入门1"></datacolumn> 
-                        </el-row>
-                </el-col>
-                <el-col :span="3">
-                        <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.suck2" title="吸入门2"></datacolumn> 
-                        </el-row>
-                </el-col>
-                <el-col :span="3">
-                        <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.suck3" title="吸入门3"></datacolumn> 
+                                <datashow :value="markerDetail.suck3" title="吸入门3"></datashow> 
                         </el-row>
                 </el-col>
 
                 </el-row>
             </div>
-                <div style="width:100%;height:140px;margin:5px 0 0 0px;border:1px solid #000;">
+                <div style="width:100%;height:240px;margin:5px 0 0 0px;border:1px solid #000;">
                   <el-row >
                     <div style="text-align:left;margin:10px 0 0 10px;font-size:20px;font-family:'黑体';font-weight: bold;color:red">
-                    故障告警
+                    告警
                     </div>
                   </el-row>
                   <el-row style="margin-top:5px">
                           <el-col :span="6">
-                            <datacolumn :value="markerDetail.waterPreWarn" title="水压报警"></datacolumn> 
+                            <datawarn :value="markerDetail.waterPreWarn" title="水压报警"></datawarn> 
                           </el-col>
                           <el-col :span="6">
-                            <datacolumn :value="markerDetail.fanWarn" title="风机报警"></datacolumn>
+                            <datawarn :value="markerDetail.fanWarn" title="风机报警"></datawarn>
                           </el-col>
                           <el-col :span="6">
-                            <datacolumn :value="markerDetail.oilTempWarn" title="油温报警"></datacolumn>
+                            <datawarn :value="markerDetail.oilTempWarn" title="油温报警"></datawarn>
                           </el-col>
                           <el-col :span="6">
-                            <datacolumn :value="markerDetail.waterTempWarn" title="水温报警"></datacolumn>
+                            <datawarn :value="markerDetail.waterTempWarn" title="水温报警"></datawarn>
                           </el-col>
+                          <el-col :span="6">
+                        <el-row class="paraModule">
+                            <datawarn :value="markerDetail.warnHigh" title="警告高位"></datawarn> 
+                        </el-row>
+                        </el-col>
+                         <el-col :span="6">
+                        <el-row class="paraModule">
+                           <datawarn :value="markerDetail.warnLow" title="警告低位"></datawarn> 
+                        </el-row>
+                       </el-col>
+                       <el-col :span="6">
+                        <el-row class="paraModule">
+                         <datawarn :value="markerDetail.cluth_warn_mode" title="离合器报警模式"></datawarn> 
+                        </el-row>
+                       </el-col>
                   </el-row> 
-                </div>
-
-
-                <div style="width:100%;height:140px;margin:5px 0 0 0px;border:1px solid #000;">
-                    <el-row >
-                      <div style="text-align:left;margin:10px 0 0 10px;font-size:20px;font-family:'黑体';font-weight: bold;color:red">
-                      设备健康状况
-                      </div>
-                    </el-row>
-                    <el-row style="margin-top:5px">
-                            <el-col :span="6">
-                              <datacolumn :value="markerDetail.err2" title="故障码2"></datacolumn> 
-                            </el-col>
-                            <el-col :span="6">
-                              <datacolumn :value="markerDetail.err3" title="故障码3"></datacolumn>
-                            </el-col>
-                            <el-col :span="6">
-                              <datacolumn :value="markerDetail.err4" title="故障码4"></datacolumn>
-                            </el-col>
-                            <el-col :span="6">
-                              <datacolumn :value="markerDetail.err5" title="故障码5"></datacolumn>
-                            </el-col>
-                    </el-row> 
                 </div>
           </el-col>
         </el-tab-pane>
@@ -292,12 +273,16 @@
   //引入组件
   import infocard from '@/components/Monitor/DeviceDetail/infoCard'
   import datacolumn from '@/components/Monitor/DeviceDetail/dataColumn'
+  import datashow from '@/components/Monitor/DeviceDetail/dataShow'
+  import datawarn from '@/components/Monitor/DeviceDetail/dataWarn'
   import historydata from '@/components/Monitor/DeviceDetail/historyData'
   import historyroute from '@/components/Monitor/DeviceDetail/historyRoute'
   export default {
       components:{
         infocard,
         datacolumn,
+        datashow,
+        datawarn,
         historydata,
         historyroute,
       },
