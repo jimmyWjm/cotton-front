@@ -192,8 +192,7 @@
         </el-tab-pane>
 
         <el-tab-pane label="历史原始数据" name="fifth">
-                <div style="height:580px">
-                </div>
+          <rawdata :mac_id="mac_id"></rawdata>
         </el-tab-pane>
 
         <el-tab-pane label="历史轨迹" name="sixth" >
@@ -281,6 +280,7 @@
   import datashow from '@/components/Monitor/DeviceDetail/dataShow'
   import datawarn from '@/components/Monitor/DeviceDetail/dataWarn'
   import historydata from '@/components/Monitor/DeviceDetail/historyData'
+  import rawdata from '@/components/Monitor/DeviceDetail/rawData'
   import historyroute from '@/components/Monitor/DeviceDetail/historyRoute'
   export default {
       components:{
@@ -289,6 +289,7 @@
         datashow,
         datawarn,
         historydata,
+        rawdata,
         historyroute,
       },
       props:{
