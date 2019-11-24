@@ -123,3 +123,14 @@ export const getDeviceHistory = (data) =>{
         data
     })
 }
+
+export const getDeviceRawData = (data) =>{
+    return axios({
+        url:'/device/history/raw_data',
+        method:'post',
+        header:{
+            'Content-Type': 'application/json'
+        },
+        data
+    })
+}

@@ -20,14 +20,9 @@
                   运行参数
                   </div>
                 </el-row>
-                <el-row>
-                        
-                <el-col :span="3">
-                        <el-row class="paraModule">
-                                <datacolumn :value="markerDetail.collectorState" title="采头状态"></datacolumn> 
-                        </el-row>
-                </el-col>
-                <el-col :span="3">
+
+              <el-row>
+                <el-col :span="3" :offset="1">
                         <el-row class="paraModule">
                                 <datacolumn :value="markerDetail.fanSpeed" title="风机转速"></datacolumn> 
                         </el-row>
@@ -60,6 +55,13 @@
                 <el-col :span="3">
                         <el-row class="paraModule">
                                 <datacolumn :value="markerDetail.restart" title="重启标志"></datacolumn> 
+                        </el-row>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="3" :offset="1">
+                        <el-row class="paraModule">
+                                <datashow :value="markerDetail.collectorState" title="采头状态"></datashow> 
                         </el-row>
                 </el-col>
                 <el-col :span="3">
@@ -95,7 +97,9 @@
                                 <datashow :value="markerDetail.lock" title="锁定"></datashow> 
                         </el-row>
                 </el-col>
-                <el-col :span="3">
+              </el-row>
+              <el-row>
+                <el-col :span="3" :offset="1"> 
                         <el-row class="paraModule">
                                 <datashow :value="markerDetail.middle" title="中位"></datashow> 
                         </el-row>
@@ -187,6 +191,7 @@
         </el-tab-pane>
 
         <el-tab-pane label="历史原始数据" name="fifth">
+          <rawdata :mac_id="mac_id"></rawdata>
                 <div style="height:580px">
                 </div>
         </el-tab-pane>
@@ -276,6 +281,7 @@
   import datashow from '@/components/Monitor/DeviceDetail/dataShow'
   import datawarn from '@/components/Monitor/DeviceDetail/dataWarn'
   import historydata from '@/components/Monitor/DeviceDetail/historyData'
+  import rawdata from '@/components/Monitor/DeviceDetail/rawData'
   import historyroute from '@/components/Monitor/DeviceDetail/historyRoute'
   export default {
       components:{
@@ -284,6 +290,7 @@
         datashow,
         datawarn,
         historydata,
+        rawdata,
         historyroute,
       },
       props:{
