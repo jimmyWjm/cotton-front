@@ -14,7 +14,7 @@
           </el-col>
 
           <el-col :span="15" >
-            <div  style="height:330px;border:1px solid #000;">
+            <div  style="height:360px;border:1px solid #000;">
                 <el-row >
                   <div style="text-align:left;margin:20px 0 0 20px;font-size:20px;font-family:'黑体';font-weight: bold;color:red">
                   运行参数
@@ -138,9 +138,10 @@
 
                 </el-row>
             </div>
-                <div style="width:100%;height:240px;margin:5px 0 0 0px;border:1px solid #000;">
+
+                <div style="width:100%;height:250px;margin:10px 0 0 0px;border:1px solid #000;">
                   <el-row >
-                    <div style="text-align:left;margin:10px 0 0 10px;font-size:20px;font-family:'黑体';font-weight: bold;color:red">
+                    <div style="text-align:left;margin:10px 0 0 20px;font-size:20px;font-family:'黑体';font-weight: bold;color:red">
                     告警
                     </div>
                   </el-row>
